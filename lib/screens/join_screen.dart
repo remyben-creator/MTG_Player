@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../widgets/common/buttons/back_button.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+class JoinScreen extends StatelessWidget {
+  const JoinScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +105,7 @@ class ProfileScreen extends StatelessWidget {
                 title: Stack(
                   children: [
                     Text(
-                      'PROFILE',
+                      'JOIN',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         letterSpacing: 2,
@@ -117,7 +117,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                     const Text(
-                      'PROFILE',
+                      'JOIN',
                       style: TextStyle(
                         color: Color(0xFFCD853F),
                         fontWeight: FontWeight.bold,
@@ -134,7 +134,7 @@ class ProfileScreen extends StatelessWidget {
               Expanded(
                 child: Center(
                   child: Text(
-                    'Profile Screen',
+                    'Join Screen',
                     style: TextStyle(
                       fontSize: 24,
                       color: const Color(0xFFCD853F),
