@@ -1,5 +1,7 @@
 # MTG Player
 
+THIS README IS MOSTLY PLACEHOLDER RN
+
 A Flutter-based Magic: The Gathering digital player application.
 
 ## Project Structure
