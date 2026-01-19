@@ -1,8 +1,49 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'screens/home_screen.dart';
+import 'services/database_service.dart';
+import 'utils/populate_cards.dart';
 
-void main() {
+void main() async {
+  // Ensure Flutter is initialized
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize sqflite for desktop platforms
+  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+    sqfliteFfiInit();
+    databaseFactory = databaseFactoryFfi;
+  }
+
+  // Populate database if empty
+  await _initializeDatabase();
+
   runApp(const MyApp());
+}
+
+Future<void> _initializeDatabase() async {
+  try {
+    final dbService = DatabaseService.instance;
+    final cardCount = await dbService.getCardCount();
+
+    if (cardCount == 0) {
+      print('Database is empty. Populating...');
+      final currentDir = Directory.current.path;
+      final cardArtPath = '$currentDir${Platform.pathSeparator}dev_assets${Platform.pathSeparator}card_art';
+
+      final populator = CardPopulator(
+        cardArtPath: cardArtPath,
+        dbService: dbService,
+      );
+
+      await populator.populateDatabase();
+      print('Database populated successfully!');
+    } else {
+      print('Database already has $cardCount cards');
+    }
+  } catch (e) {
+    print('Error initializing database: $e');
+  }
 }
 
 class MyApp extends StatelessWidget {

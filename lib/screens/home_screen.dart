@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'profile_screen.dart';
-import 'decks_screen.dart';
-import 'host_screen.dart';
-import 'join_screen.dart';
+import 'deck_screens/decks_home_screen.dart';
+import 'server_screens/host_screen.dart';
+import 'server_screens/join_screen.dart';
 import '../widgets/common/buttons/standard_button.dart';
 
 class HomeScreen extends StatelessWidget {

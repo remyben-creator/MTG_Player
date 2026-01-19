@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
-import '../widgets/common/buttons/back_button.dart';
+import '../../widgets/common/buttons/back_button.dart';
+import '../../widgets/common/display/card_grid_widget.dart';
+import '../../models/card.dart' as mtg;
 
-class HostScreen extends StatelessWidget {
-  const HostScreen({super.key});
+class CardViewerScreen extends StatelessWidget {
+  final String title;
+  final List<mtg.Card> cards;
+
+  const CardViewerScreen({
+    super.key,
+    required this.title,
+    required this.cards,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -99,52 +108,43 @@ class HostScreen extends StatelessWidget {
           // Content
           SafeArea(
             child: Column(
-            children: [
-              AppBar(
-                leading: const CustomBackButton(),
-                title: Stack(
-                  children: [
-                    Text(
-                      'HOST',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 2,
-                        fontSize: 24,
-                        foreground: Paint()
-                          ..style = PaintingStyle.stroke
-                          ..strokeWidth = 4
-                          ..color = const Color(0xFF2e1907),
+              children: [
+                AppBar(
+                  leading: const CustomBackButton(),
+                  title: Stack(
+                    children: [
+                      Text(
+                        title.toUpperCase(),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2,
+                          fontSize: 24,
+                          foreground: Paint()
+                            ..style = PaintingStyle.stroke
+                            ..strokeWidth = 4
+                            ..color = const Color(0xFF2e1907),
+                        ),
                       ),
-                    ),
-                    const Text(
-                      'HOST',
-                      style: TextStyle(
-                        color: Color(0xFFCD853F),
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 2,
-                        fontSize: 24,
+                      Text(
+                        title.toUpperCase(),
+                        style: const TextStyle(
+                          color: Color(0xFFCD853F),
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2,
+                          fontSize: 24,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                centerTitle: true,
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-              ),
-              Expanded(
-                child: Center(
-                  child: Text(
-                    'Host Screen',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: const Color(0xFFCD853F),
-                      fontWeight: FontWeight.w600,
-                    ),
+                    ],
                   ),
+                  centerTitle: true,
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
                 ),
-              ),
-            ],
-          ),
+                Expanded(
+                  child: CardGridWidget(cards: cards),
+                ),
+              ],
+            ),
           ),
         ],
       ),

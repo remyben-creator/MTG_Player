@@ -63,10 +63,14 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
-
+  # Using dev_assets for faster development builds (6 sets)
+  assets:
+    - dev_assets/card_art/15th_Anniversary_Cards/
+    - dev_assets/card_art/2016_Heroes_of_the_Realm/
+    - dev_assets/card_art/2017_Gift_Pack/
+    - dev_assets/card_art/2017_Heroes_of_the_Realm/
+    - dev_assets/card_art/2018_Heroes_of_the_Realm/
+    - dev_assets/card_art/Aetherdrift_Commander/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 

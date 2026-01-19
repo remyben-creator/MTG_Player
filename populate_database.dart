@@ -16,7 +16,7 @@ Future<void> main(List<String> arguments) async {
 
   // Get the card art directory path
   final currentDir = Directory.current.path;
-  final cardArtPath = '$currentDir${Platform.pathSeparator}lib${Platform.pathSeparator}assets${Platform.pathSeparator}card_art';
+  final cardArtPath = '$currentDir${Platform.pathSeparator}dev_assets${Platform.pathSeparator}card_art';
 
   // Initialize services
   final dbService = CliDatabaseService();

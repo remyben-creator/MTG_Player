@@ -101,7 +101,7 @@ class CardPopulator {
         final (collectorNumber, cardName) = parsed;
 
         // Create relative path for storage
-        final relativePath = 'lib${Platform.pathSeparator}assets${Platform.pathSeparator}card_art${Platform.pathSeparator}$setNameRaw${Platform.pathSeparator}$filename';
+        final relativePath = 'dev_assets${Platform.pathSeparator}card_art${Platform.pathSeparator}$setNameRaw${Platform.pathSeparator}$filename';
 
         final card = Card(
           name: cardName,
