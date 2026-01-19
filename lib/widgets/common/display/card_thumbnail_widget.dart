@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import '../../../models/card.dart' as mtg;
+import 'card_detail_overlay.dart';
 
 class CardThumbnailWidget extends StatelessWidget {
   final mtg.Card card;
@@ -18,23 +19,33 @@ class CardThumbnailWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = width * 1.4;
 
-    return Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            blurRadius: 4,
-            offset: const Offset(0, 2),
-          ),
-        ],
+    return GestureDetector(
+      onTap: () => _showCardDetail(context),
+      child: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              blurRadius: 4,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: _buildCardImage(),
+        ),
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
-        child: _buildCardImage(),
-      ),
+    );
+  }
+
+  void _showCardDetail(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => CardDetailOverlay(card: card),
     );
   }
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../widgets/common/buttons/back_button.dart';
 import '../../widgets/common/buttons/standard_button.dart';
-import 'card_viewer_screen.dart';
-import '../../services/database_service.dart';
-import '../../models/card.dart' as mtg;
+import 'deck_creator_screen.dart';
+import 'list_viewing_screens/my_decks_screen.dart';
+import 'list_viewing_screens/card_database_screen.dart';
 
 class DecksScreen extends StatelessWidget {
   const DecksScreen({super.key});
@@ -147,12 +147,26 @@ class DecksScreen extends StatelessWidget {
                           children: [
                             StandardButton(
                               text: 'Create Deck',
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const CreateDeckScreen(),
+                                  ),
+                                );
+                              },
                             ),
                             const SizedBox(width: 20),
                             StandardButton(
                               text: 'My Decks',
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const MyDecksScreen(),
+                                  ),
+                                );
+                              },
                             ),
                           ],
                         ),
@@ -162,22 +176,13 @@ class DecksScreen extends StatelessWidget {
                           children: [
                             StandardButton(
                               text: 'Card Database',
-                              onPressed: () async {
-                                // Load first 100 cards from database
-                                final allCards = await DatabaseService.instance.getAllCards();
-                                final cards = allCards.take(100).toList();
-
-                                if (context.mounted) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => CardViewerScreen(
-                                        title: 'Random Cards',
-                                        cards: cards,
-                                      ),
-                                    ),
-                                  );
-                                }
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const CardDatabaseScreen(),
+                                  ),
+                                );
                               },
                             ),
                           ],

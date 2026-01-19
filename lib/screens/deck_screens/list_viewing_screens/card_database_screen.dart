@@ -1,17 +1,41 @@
 import 'package:flutter/material.dart';
-import '../../widgets/common/buttons/back_button.dart';
-import '../../widgets/common/display/card_grid_widget.dart';
-import '../../models/card.dart' as mtg;
+import '../../../widgets/common/buttons/back_button.dart';
+import '../../../widgets/common/display/scroll_list_widget.dart';
+import '../../../widgets/common/display/scroll_item_widget.dart';
+import '../../../services/database_service.dart';
+import '../../../models/card.dart' as mtg;
+import '../card_viewing_screens/card_viewer_screen.dart';
 
-class CardViewerScreen extends StatelessWidget {
-  final String title;
-  final List<mtg.Card> cards;
+class CardDatabaseScreen extends StatefulWidget {
+  const CardDatabaseScreen({super.key});
 
-  const CardViewerScreen({
-    super.key,
-    required this.title,
-    required this.cards,
-  });
+  @override
+  State<CardDatabaseScreen> createState() => _CardDatabaseScreenState();
+}
+
+class _CardDatabaseScreenState extends State<CardDatabaseScreen> {
+  // Hardcoded "All" set to show first 100 cards from database
+  List<String> setNames = [
+    'All',
+  ];
+
+  void _handleSetTap(int index) async {
+    // Load first 100 cards from database
+    final allCards = await DatabaseService.instance.getAllCards();
+    final cards = allCards.take(100).toList();
+
+    if (mounted) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CardViewerScreen(
+            title: setNames[index],
+            cards: cards,
+          ),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +138,7 @@ class CardViewerScreen extends StatelessWidget {
                   title: Stack(
                     children: [
                       Text(
-                        title.toUpperCase(),
+                        'CARD DATABASE',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           letterSpacing: 2,
@@ -125,9 +149,9 @@ class CardViewerScreen extends StatelessWidget {
                             ..color = const Color(0xFF2e1907),
                         ),
                       ),
-                      Text(
-                        title.toUpperCase(),
-                        style: const TextStyle(
+                      const Text(
+                        'CARD DATABASE',
+                        style: TextStyle(
                           color: Color(0xFFCD853F),
                           fontWeight: FontWeight.bold,
                           letterSpacing: 2,
@@ -141,7 +165,12 @@ class CardViewerScreen extends StatelessWidget {
                   elevation: 0,
                 ),
                 Expanded(
-                  child: CardGridWidget(cards: cards),
+                  child: ScrollListWidget(
+                    itemNames: setNames,
+                    itemType: ScrollItemType.set,
+                    onItemTap: _handleSetTap,
+                    emptyMessage: 'No sets available',
+                  ),
                 ),
               ],
             ),
