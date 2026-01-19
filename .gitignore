@@ -1,5 +1,7 @@
 mtg-set-downloader-binder/
 lib/assets/card_art/
+assets/
+dev_assets/
 
 # Miscellaneous
 *.class
