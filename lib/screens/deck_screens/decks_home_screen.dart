@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../widgets/common/buttons/back_button.dart';
 import '../../widgets/common/buttons/standard_button.dart';
-import 'deck_creator_screen.dart';
-import 'list_viewing_screens/my_decks_screen.dart';
-import 'list_viewing_screens/card_database_screen.dart';
+import '../../routes/app_routes.dart';
 
 class DecksScreen extends StatelessWidget {
   const DecksScreen({super.key});
@@ -147,26 +145,12 @@ class DecksScreen extends StatelessWidget {
                           children: [
                             StandardButton(
                               text: 'Create Deck',
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const CreateDeckScreen(),
-                                  ),
-                                );
-                              },
+                              onPressed: () => Navigator.pushNamed(context, AppRoutes.createDeck),
                             ),
                             const SizedBox(width: 20),
                             StandardButton(
                               text: 'My Decks',
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const MyDecksScreen(),
-                                  ),
-                                );
-                              },
+                              onPressed: () => Navigator.pushNamed(context, AppRoutes.myDecks),
                             ),
                           ],
                         ),
@@ -176,14 +160,7 @@ class DecksScreen extends StatelessWidget {
                           children: [
                             StandardButton(
                               text: 'Card Database',
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const CardDatabaseScreen(),
-                                  ),
-                                );
-                              },
+                              onPressed: () => Navigator.pushNamed(context, AppRoutes.cardDatabase),
                             ),
                           ],
                         ),

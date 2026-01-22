@@ -4,7 +4,8 @@ import '../../../widgets/common/display/scroll_list_widget.dart';
 import '../../../widgets/common/display/scroll_item_widget.dart';
 import '../../../services/database_service.dart';
 import '../../../models/card.dart' as mtg;
-import '../card_viewing_screens/card_viewer_screen.dart';
+import '../../../routes/app_routes.dart';
+import '../../../routes/route_arguments.dart';
 
 class CardDatabaseScreen extends StatefulWidget {
   const CardDatabaseScreen({super.key});
@@ -25,13 +26,12 @@ class _CardDatabaseScreenState extends State<CardDatabaseScreen> {
     final cards = allCards.take(100).toList();
 
     if (mounted) {
-      Navigator.push(
+      Navigator.pushNamed(
         context,
-        MaterialPageRoute(
-          builder: (context) => CardViewerScreen(
-            title: setNames[index],
-            cards: cards,
-          ),
+        AppRoutes.cardViewer,
+        arguments: CardViewerArguments(
+          title: setNames[index],
+          cards: cards,
         ),
       );
     }

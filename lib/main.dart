@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'screens/home_screen.dart';
 import 'services/database_service.dart';
 import 'utils/populate_cards.dart';
+import 'routes/app_routes.dart';
+import 'routes/route_generator.dart';
 
 void main() async {
   // Ensure Flutter is initialized
@@ -63,7 +64,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: const Color(0xFFa15818),
       ),
-      home: const HomeScreen(),
+      // Use named routes
+      initialRoute: AppRoutes.home,
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }

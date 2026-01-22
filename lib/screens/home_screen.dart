@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'profile_screen.dart';
-import 'deck_screens/decks_home_screen.dart';
-import 'server_screens/host_screen.dart';
-import 'server_screens/join_screen.dart';
 import '../widgets/common/buttons/standard_button.dart';
+import '../routes/app_routes.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -141,22 +138,12 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       StandardButton(
                         text: 'Host',
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const HostScreen()),
-                          );
-                        },
+                        onPressed: () => Navigator.pushNamed(context, AppRoutes.host),
                       ),
                       const SizedBox(width: 20),
                       StandardButton(
                         text: 'Join',
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const JoinScreen()),
-                          );
-                        },
+                        onPressed: () => Navigator.pushNamed(context, AppRoutes.join),
                       ),
                     ],
                   ),
@@ -166,22 +153,12 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       StandardButton(
                         text: 'Decks',
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const DecksScreen()),
-                          );
-                        },
+                        onPressed: () => Navigator.pushNamed(context, AppRoutes.decks),
                       ),
                       const SizedBox(width: 20),
                       StandardButton(
                         text: 'Profile',
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const ProfileScreen()),
-                          );
-                        },
+                        onPressed: () => Navigator.pushNamed(context, AppRoutes.profile),
                       ),
                     ],
                   ),
